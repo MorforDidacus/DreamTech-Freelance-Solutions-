@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.10.25/bundle/libphonenumber-js.min.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 15px 0;
+      padding: 15px 20px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .name {
+      font-weight: bold;
+      color: purple;
+      font-size: 1.1em;
+      margin-bottom: 8px;
+    }
+
+    .links {
+      margin-bottom: 8px;
+    }
+
+    .links a {
+      display: inline-block;
+      margin-right: 15px;
+      font-size: 0.95em;
+      text-decoration: none;
+    }
+
+    .call-link {
+      color: #0077cc;
+    }
+
+    .whatsapp-link {
+      color: #25D366;
+    }
+
+    .links span {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .time {
+      text-align: right;
+      font-size: 0.8em;
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Directory</h1>
+    <div id="contactList">Loading contacts...</div>
+  </div>
+
+<script>
+  const countries = [
+    // Africa
+    { name: "Nigeria", code: "+234", prefixes: ["701","703","704","705","706","707","708","802","803","805"], flag: "🇳🇬" },
+    { name: "Cameroon", code: "+237", prefixes: ["6"], flag: "🇨🇲" },
+    { name: "Ghana", code: "+233", prefixes: ["20","23","24","26"], flag: "🇬🇭" },
+    { name: "South Africa", code: "+27", prefixes: ["60","61","62","63"], flag: "🇿🇦" },
+    { name: "Kenya", code: "+254", prefixes: ["70","71","72"], flag: "🇰🇪" },
+    { name: "Ethiopia", code: "+251", prefixes: ["91","92","93"], flag: "🇪🇹" },
+
+    // Europe & Asia
+    { name: "United Kingdom", code: "+44", prefixes: ["74","75","77"], flag: "🇬🇧" },
+    { name: "Germany", code: "+49", prefixes: ["15","16","17"], flag: "🇩🇪" },
+    { name: "France", code: "+33", prefixes: ["6","7"], flag: "🇫🇷" },
+    { name: "Italy", code: "+39", prefixes: ["3"], flag: "🇮🇹" },
+    { name: "Spain", code: "+34", prefixes: ["6","7"], flag: "🇪🇸" },
+    { name: "Netherlands", code: "+31", prefixes: ["6"], flag: "🇳🇱" },
+    { name: "Russia", code: "+7", prefixes: ["9"], flag: "🇷🇺" },
+    { name: "Ukraine", code: "+380", prefixes: ["50","63","66"], flag: "🇺🇦" },
+    { name: "India", code: "+91", prefixes: ["7","8","9"], flag: "🇮🇳" },
+    { name: "China", code: "+86", prefixes: ["13","15","18"], flag: "🇨🇳" },
+    { name: "Japan", code: "+81", prefixes: ["70","80","90"], flag: "🇯🇵" },
+    { name: "South Korea", code: "+82", prefixes: ["10","11"], flag: "🇰🇷" },
+    { name: "Pakistan", code: "+92", prefixes: ["3"], flag: "🇵🇰" },
+    { name: "Philippines", code: "+63", prefixes: ["9"], flag: "🇵🇭" },
+    { name: "Turkey", code: "+90", prefixes: ["5"], flag: "🇹🇷" }
+  ];
+
+  function detectCountry(phone) {
+    const cleaned = phone.replace(/\D/g, '');
+    for (const country of countries) {
+      for (const prefix of country.prefixes) {
+        if (cleaned.startsWith(prefix) || cleaned.startsWith(country.code.replace('+', '') + prefix)) {
+          return country;
+        }
+      }
+    }
+    return { name: "Unknown", code: "", flag: "🌍" };
+  }
+
+  function loadContacts() {
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('contactList');
+        list.innerHTML = '';
+
+        data.forEach(item => {
+          const digits = item.phone.replace(/\D/g, '');
+          const country = detectCountry(digits);
+          const fullNumber = country.code + digits;
+          const whatsappLink = "https://wa.me/" + fullNumber.replace('+', '');
+
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="name">${item.name}</div>
+            <div class="links">
+              <span>Call:</span> <a href="tel:${fullNumber}">${country.flag} ${fullNumber}</a><br>
+              <span>WhatsApp:</span> <a href="${whatsappLink}" target="_blank">Chat</a>
+            </div>
+            <div class="time">${new Date(item.timestamp).toLocaleString()}</div>
+          `;
+          list.appendChild(card);
+        });
+      })
+      .catch(() => {
+        document.getElementById('contactList').innerText = 'Failed to load contacts.';
+      });
+  }
+
+  loadContacts();
+</script>
+</body>
+</html>

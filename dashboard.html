@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DreamTech Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+    }
+
+    header {
+      background: linear-gradient(to right, #4B0082 30%, orange);
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #4B0082;
+      font-size: 1.5em;
+    }
+
+    .card p {
+      margin: 5px 0 0;
+      color: #555;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Dashboard</h1>
+</header>
+
+<div class="dashboard">
+  <div class="card">
+    <h3>420+</h3>
+    <p>Clients</p>
+  </div>
+  <div class="card">
+    <h3>300+</h3>
+    <p>Successful Projects</p>
+  </div>
+  <div class="card">
+    <h3>5</h3>
+    <p>Years of Service</p>
+  </div>
+  <div class="card">
+    <h3>15</h3>
+    <p>Failed Projects</p>
+  </div>
+  <div class="card">
+    <h3>10+</h3>
+    <p>Team Members</p>
+  </div>
+  <div class="card">
+    <h3>20+</h3>
+    <p>Technologies Used</p>
+  </div>
+  <div class="card">
+    <h3>50+</h3>
+    <p>Ongoing Projects</p>
+  </div>
+</div>
+
+</body>
+</html>

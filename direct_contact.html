@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .name {
+      font-weight: bold;
+      color: purple;
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .email a {
+      color: #0066cc;
+      text-decoration: none;
+      font-size: 0.95em;
+    }
+
+    .email a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .time {
+      text-align: right;
+      font-size: 0.8em;
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Visitors Messages</h1>
+    <div id="messageList">Loading messages...</div>
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('messageList');
+        list.innerHTML = '';
+
+        data.forEach(entry => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="name">${entry.name}</div>
+            <div class="email"><a href="mailto:${entry.email}">${entry.email}</a></div>
+            <div class="message">${entry.message}</div>
+            <div class="time">${new Date(entry.time).toLocaleString()}</div>
+          `;
+          list.appendChild(card);
+        });
+      })
+      .catch(error => {
+        document.getElementById('messageList').innerText = 'Failed to load messages.';
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

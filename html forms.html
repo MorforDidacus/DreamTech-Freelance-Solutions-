@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Well-Designed Form Examples</title>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+    }
+    .example {
+      background: white;
+      border: 1px solid #ddd;
+      margin-bottom: 50px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+    pre {
+      position: relative;
+      background: #2d2d2d;
+      color: #f8f8f2;
+      border-radius: 5px;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    textarea, input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>5 Well-Designed HTML Forms</h1>
+
+<!-- Form Example 1 -->
+<div class="example">
+  <h2>1. Registration Form</h2>
+  <pre><code class="language-html" id="code1">
+&lt;form&gt;
+  &lt;label&gt;Full Name:&lt;/label&gt;
+  &lt;input type="text" placeholder="John Doe" required /&gt;
+
+  &lt;label&gt;Email Address:&lt;/label&gt;
+  &lt;input type="email" placeholder="john@example.com" required /&gt;
+
+  &lt;label&gt;Password:&lt;/label&gt;
+  &lt;input type="password" required /&gt;
+
+  &lt;label&gt;Confirm Password:&lt;/label&gt;
+  &lt;input type="password" required /&gt;
+
+  &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;
+  </code></pre>
+  <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+  <div class="output">
+    <form>
+      <label>Full Name:</label>
+      <input type="text" placeholder="John Doe" required />
+
+      <label>Email Address:</label>
+      <input type="email" placeholder="john@example.com" required />
+
+      <label>Password:</label>
+      <input type="password" required />
+
+      <label>Confirm Password:</label>
+      <input type="password" required />
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+  <p>
+    This registration form collects essential user details like name, email, and password. It uses `required` to ensure fields are not left empty. The structure is simple but intuitive. Labels are placed directly above each input for better readability and accessibility. The password confirmation helps reduce login issues later. This form is ideal for most sign-up systems due to its balance between simplicity and data integrity.
+  </p>
+</div>
+
+<!-- Form Example 2 -->
+<div class="example">
+  <h2>2. Contact Form</h2>
+  <pre><code class="language-html" id="code2">
+&lt;form&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input type="text" required /&gt;
+
+  &lt;label&gt;Email:&lt;/label&gt;
+  &lt;input type="email" required /&gt;
+
+  &lt;label&gt;Subject:&lt;/label&gt;
+  &lt;input type="text" /&gt;
+
+  &lt;label&gt;Message:&lt;/label&gt;
+  &lt;textarea rows="4" required&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+&lt;/form&gt;
+  </code></pre>
+  <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+  <div class="output">
+    <form>
+      <label>Name:</label>
+      <input type="text" required />
+
+      <label>Email:</label>
+      <input type="email" required />
+
+      <label>Subject:</label>
+      <input type="text" />
+
+      <label>Message:</label>
+      <textarea rows="4" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+  <p>
+    The contact form allows users to quickly reach out with inquiries or feedback. It includes name, email, subject, and a message box. The use of `<textarea>` ensures adequate space for long messages. This is commonly used on business sites and portfolios. Each field is labeled and aligned for a clean, professional appearance. Required fields ensure form submissions are meaningful.
+  </p>
+</div>
+
+<!-- Form Example 3 -->
+<div class="example">
+  <h2>3. Feedback Form with Rating</h2>
+  <pre><code class="language-html" id="code3">
+&lt;form&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input type="text" /&gt;
+
+  &lt;label&gt;How was your experience?&lt;/label&gt;
+  &lt;select&gt;
+    &lt;option&gt;Excellent&lt;/option&gt;
+    &lt;option&gt;Good&lt;/option&gt;
+    &lt;option&gt;Average&lt;/option&gt;
+    &lt;option&gt;Poor&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label&gt;Additional Comments:&lt;/label&gt;
+  &lt;textarea rows="3"&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Submit Feedback&lt;/button&gt;
+&lt;/form&gt;
+  </code></pre>
+  <button class="copy-btn" onclick="copyCode('code3')">Copy</button>
+  <div class="output">
+    <form>
+      <label>Name:</label>
+      <input type="text" />
+
+      <label>How was your experience?</label>
+      <select>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Poor</option>
+      </select>
+
+      <label>Additional Comments:</label>
+      <textarea rows="3"></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+  <p>
+    This feedback form is perfect for capturing quick impressions. The select dropdown streamlines user input while still allowing for detail in the comments box. It balances structured and open-ended feedback. Businesses and services often embed this post-transaction or post-support. Simplicity helps increase the submission rate, and optional fields keep it flexible.
+  </p>
+</div>
+
+<!-- Form Example 4 -->
+<div class="example">
+  <h2>4. Login Form</h2>
+  <pre><code class="language-html" id="code4">
+&lt;form&gt;
+  &lt;label&gt;Email or Username:&lt;/label&gt;
+  &lt;input type="text" required /&gt;
+
+  &lt;label&gt;Password:&lt;/label&gt;
+  &lt;input type="password" required /&gt;
+
+  &lt;label&gt;
+    &lt;input type="checkbox" /&gt; Remember Me
+  &lt;/label&gt;
+
+  &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+  </code></pre>
+  <button class="copy-btn" onclick="copyCode('code4')">Copy</button>
+  <div class="output">
+    <form>
+      <label>Email or Username:</label>
+      <input type="text" required />
+
+      <label>Password:</label>
+      <input type="password" required />
+
+      <label>
+        <input type="checkbox" /> Remember Me
+      </label>
+
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <p>
+    A login form is a staple of user authentication systems. This design supports both email and username for convenience. It includes a "Remember Me" checkbox to enhance user experience by reducing future logins. Secure input types are used, and the minimalist layout avoids distractions. This approach improves usability and reduces errors.
+  </p>
+</div>
+
+<!-- Form Example 5 -->
+<div class="example">
+  <h2>5. Newsletter Signup</h2>
+  <pre><code class="language-html" id="code5">
+&lt;form&gt;
+  &lt;label&gt;Subscribe to our newsletter:&lt;/label&gt;
+  &lt;input type="email" placeholder="you@example.com" required /&gt;
+
+  &lt;button type="submit"&gt;Subscribe&lt;/button&gt;
+&lt;/form&gt;
+  </code></pre>
+  <button class="copy-btn" onclick="copyCode('code5')">Copy</button>
+  <div class="output">
+    <form>
+      <label>Subscribe to our newsletter:</label>
+      <input type="email" placeholder="you@example.com" required />
+
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+  <p>
+    This newsletter form is ideal for collecting emails without overwhelming the user. Just one field and one button. Clean and effective. It's common in footers, modals, and popups. It helps grow mailing lists while keeping UX as simple as possible. Best when paired with confirmation messages or incentives (e.g. free ebooks).
+  </p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+<script>
+  function copyCode(id) {
+    const code = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      alert("Code copied to clipboard!");
+    });
+  }
+</script>
+
+</body>
+</html>
